@@ -85,11 +85,25 @@ public class CalendarController {
                     .setServiceAccountPrivateKeyFromP12File(keyFile)
                     .build();
             credential.refreshToken();
-            client = new .google.api.services.calendar.Calendar.Builder(TRANSPORT, JSON_FACTORY, credential)
+            client = new com.google.api.services.calendar.Calendar.Builder(TRANSPORT, JSON_FACTORY, credential)
                     .setApplicationName(APPLICATION_NAME).build();
             System.out.println(client);
             Events events = client.events();
-            eventList = events.list("primary").setTimeMin(date1).setTimeMax(date2)
+            eventList = events.list("primary").setTimeMin(date1).setTimeMax(date2).execute();
+            message = eventList.getItems().toString();
+
+            Event event = new Event()
+                    .setSummary("Google I/O 2015")
+                    .setLocation("800 Howard St., San Francisco, CA 94103")
+                    .setDescription("A chance to hear more about Google's developer products.");
+
+            DateTime startDateTime = new DateTime("2021-07-31T09:00:00-07:00");
+            EventDateTime start = new EventDateTime()
+                    .setDateTime(startDateTime)
+                    .setTimeZone("America/Los_Angeles");
+            event.setStart(start);
+
+            DateTime endDateTime = new DateTime("")
         }
     }
 
