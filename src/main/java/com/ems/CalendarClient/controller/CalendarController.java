@@ -53,7 +53,7 @@ public class CalendarController {
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
     private static com.google.api.services.calendar.Calendar client;
 
-    URL url = getClass().getResource("auth.p12");
+    URL url = getClass().getResource("credentials.json");
     File keyFile = new File(url.getPath());
     GoogleClientSecrets clientSecrets;
     GoogleAuthorizationCodeFlow flow;
